@@ -167,14 +167,14 @@ var ConnectPlayer = React.createClass({
 			console.log(currentState);
 			console.log(changes);
 			if (changes.currentTrackURI.type == 'updated') {
-				socketNewTrack(changes.currentTrackURI.data)
+				socketNewTrack(newState.currentTrackURI)
 				currentState = state
 			}
 			if (changes.paused.type == 'updated') {
-				if (changes.paused.data)
-					socketResume()
-				else
+				if (newState.paused)
 					socketPause()
+				else
+					socketResume()
 			}
 			currentState = newState
 
@@ -192,6 +192,7 @@ var ConnectPlayer = React.createClass({
 			Demo.WebPlaybackSDK.resume();
 		})
 		addTrackChangedListener((uri) => {
+			currentState.currentTrackURI = uri
 			Demo.playTrack(uri)
 		})
 

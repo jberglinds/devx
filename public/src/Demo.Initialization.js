@@ -53,26 +53,26 @@ const Demo = {
     return window.fetch(request);
   },
 
-//   /**
-//    * Play a track.
-//    *
-//    * See https://beta.developer.spotify.com/documentation/web-api/
-//    *
-//    * Example code:
-//    *   Demo.playTrack("spotify:track:1j4kHkkpqZRBwE0A4CN4Yv")
-//    */
-//    playTrack: (uri) => {
-//      let request = new Request("https://api.spotify.com/v1/me/player/play", {
-//        method: "PUT",
-//        headers: new Headers({
-//          'Content-Type':  'application/json; charset=utf-8',
-//          'Authorization': 'Bearer ' + Demo.getAccessToken()
-//        }),
-//       body: JSON.stringify({ uris: [uri] })
-//      });
+  /**
+   * Play a track.
+   *
+   * See https://beta.developer.spotify.com/documentation/web-api/
+   *
+   * Example code:
+   *   Demo.playTrack("spotify:track:1j4kHkkpqZRBwE0A4CN4Yv")
+   */
+   playTrack: (uri) => {
+     let request = new Request("https://api.spotify.com/v1/me/player/play", {
+       method: "PUT",
+       headers: new Headers({
+         'Content-Type':  'application/json; charset=utf-8',
+         'Authorization': 'Bearer ' + Demo.getAccessToken()
+       }),
+      body: JSON.stringify({ uris: [uri] })
+     });
 
-//      return window.fetch(request).then((resp) => resp.json());
-//    },
+     return window.fetch(request).then((resp) => resp.json());
+   },
 
 //   /**
 //    * Search

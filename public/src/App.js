@@ -1,7 +1,5 @@
 /* global Demo, React, ReactDOM */
 
-let recentUpdate = false
-
 let socket = io('10.48.12.61:8080').connect()
 socket.on('connect', () => {
 	console.log('Ready')
@@ -25,32 +23,37 @@ function addResumedListener(callback) {
 	socket.on('resume', (req) => callback(req))
 }
 
-function sendPaused() {
-	if (!recentUpdate) {
-		socket.emit('pause', {})
+function socketPause() {
+	runDebounced(() => {
+		socket.emit('pause')
 		console.log('Sending pause on socket')
-		recentUpdate = true
-		window.setTimeout(() => {
-			recentUpdate = false
-		}, 500)
-	}
+	})
 }
 
-function sendResumed() {
-	if (!recentUpdate) {
-		socket.emit('resume', {})
+function socketResume() {
+	runDebounced(() => {
+		socket.emit('resume')
 		console.log('Sending resume on socket')
+	})
+}
+
+function socketNewTrack(uri) {
+	runDebounced(() => {
+		socket.emit('track-change', uri)
+		console.log('Sending track-change on socket');
+	})
+}
+
+let recentUpdate = false
+function runDebounced(func) {
+	if (!recentUpdate) {
+		func()
 		recentUpdate = true
 		window.setTimeout(() => {
 			recentUpdate = false
-		}, 500)
+		}, 300)
 	}
 }
-
-function sendNewTrack(uri) {
-	socket.emit('track-change', uri)
-}
-
 
 /**
  * (C) 2017 Spotify AB
@@ -61,6 +64,7 @@ function sendNewTrack(uri) {
  ******** REACT CLASSES *********
  ********************************
  ********************************/
+let currentTrackURI
 
 var Authorize = React.createClass({
   render () {
@@ -76,10 +80,16 @@ var ConnectPlayer = React.createClass({
   listenForFocusOnWebPlayer() {
     let _this = this;
     let stateHandlerCallback = (state) => {
+			let newTrack = state.track_window.current_track.uri
+			if (newTrack != current_track) {
+				socketNewTrack(newTrack)
+				current_track = newTrack
+			}
 			if (state.paused)
-				sendPaused()
-			else
-				sendResumed()
+				socketPause()
+			else {
+				socketResume()
+			}
 
       console.log("Currently Playing", state);
       _this.stateHandler(state);
@@ -93,6 +103,9 @@ var ConnectPlayer = React.createClass({
 		})
 		addResumedListener((req) => {
 			Demo.WebPlaybackSDK.resume();
+		})
+		addTrackChangedListener((uri) => {
+			Demo.playTrack(uri)
 		})
 
     // When a change is made

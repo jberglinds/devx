@@ -1,6 +1,6 @@
 "use strict"
 
-// require('dotenv').config()
+require('dotenv').config()
 
 let express = require('express')
 let http = require('http')
@@ -20,9 +20,9 @@ app.use(bodyParser.urlencoded({
     extended: true
 }))
 
-// let io = socketio.listen(httpServer)
-// let socket_controller = require('./socket-controller.js')
-// socket_controller.setup(io)
+let io = socketio.listen(httpServer)
+let socket_controller = require('./socket-controller.js')
+socket_controller.setup(io)
 
 // let router = require('./api-router.js')
 // app.use('/api', router)

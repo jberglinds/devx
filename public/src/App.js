@@ -230,17 +230,24 @@ var PlayerControls = React.createClass({
     let track_id = this.props.state.track_window.current_track.id;
     let track_url = "https://open.spotify.com/track/" + track_id;
 
+    // Checks whether the user is a host or listerner and returns the button configuration
+    if (Demo.is_host) {
+      return (
+          <ul className="player player-controls">
+            <li><a onClick={this.previousTrack} className="fa fa-fast-backward"></a></li>
+            <li><a onClick={this.mute} className="fa fa-chevron-circle-left "></a></li>
+            <li><a onClick={this.startFromBeginning} className="fa fa-repeat "></a></li>
+          {this.renderPlayOrPause()}
+            <li><a onClick={this.skip15Seconds} className="fa fa-chevron-circle-right "></a></li>
+            <li><a onClick={this.nextTrack} className="fa fa-fast-forward"></a></li>
+            <li><a onClick={this.mute} className="fa fa-volume-off"></a></li>
+            <li><a onClick={this.setVolumeToMax} className="fa fa-volume-up "></a></li>
+          </ul>
+      );
+    }
     return (
       <ul className="player player-controls">
-        <li><a onClick={this.previousTrack} className="fa fa-fast-backward"></a></li>
         <li><a onClick={this.mute} className="fa fa-chevron-circle-left "></a></li>
-        <li><a onClick={this.startFromBeginning} className="fa fa-repeat "></a></li>
-      {this.renderPlayOrPause()}
-        <li><a onClick={this.skip15Seconds} className="fa fa-chevron-circle-right "></a></li>
-        <li><a onClick={this.nextTrack} className="fa fa-fast-forward"></a></li>
-        <li><a onClick={this.mute} className="fa fa-volume-off"></a></li>
-        <li><a onClick={this.setVolumeToMax} className="fa fa-volume-up "></a></li>
-
       </ul>
     );
   }

@@ -12,6 +12,7 @@ const Demo = {
    *   console.log(Demo.access_token);
    */
   access_token: null,
+  is_host: true,
 
   /**
    * Our local instance of Web Playback SDK.

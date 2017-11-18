@@ -26,23 +26,23 @@ function addResumedListener(callback) {
 }
 
 function sendPaused() {
-	if (recentUpdate) {
+	if (!recentUpdate) {
 		socket.emit('pause', {})
 		console.log('Sending pause on socket')
-		recentUpdate = false
+		recentUpdate = true
 		window.setTimeout(() => {
-			recentUpdate = true
+			recentUpdate = false
 		}, 500)
 	}
 }
 
 function sendResumed() {
-	if (recentUpdate) {
+	if (!recentUpdate) {
 		socket.emit('resume', {})
 		console.log('Sending resume on socket')
-		recentUpdate = false
+		recentUpdate = true
 		window.setTimeout(() => {
-			recentUpdate = true
+			recentUpdate = false
 		}, 500)
 	}
 }

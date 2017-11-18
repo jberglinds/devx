@@ -64,7 +64,10 @@ function runDebounced(func) {
  ******** REACT CLASSES *********
  ********************************
  ********************************/
-let currentState
+let currentState = {
+	paused: true,
+	currentTrackURI: '',
+}
 
 var deepDiffMapper = function() {
     return {
@@ -155,18 +158,25 @@ var ConnectPlayer = React.createClass({
   listenForFocusOnWebPlayer() {
     let _this = this;
     let stateHandlerCallback = (state) => {
-			let changes = deepDiffMapper.map(currentState, state)
-			if (changes.track_window && changes.track_window.current_track && changes.track_window.current_track.uri) {
-				socketNewTrack(changes.track_window.current_track.uri)
+			let newState = {
+				paused: state.paused,
+				currentTrackURI: state.track_window.current_track.uri
+			}
+			let changes = deepDiffMapper.map(currentState, newState)
+			console.log(newState);
+			console.log(currentState);
+			console.log(changes);
+			if (changes.currentTrackURI.type == 'updated') {
+				socketNewTrack(changes.currentTrackURI.data)
 				currentState = state
 			}
-			if (changes.paused) {
-				if (changes.paused)
-					socketPause()
-				else
+			if (changes.paused.type == 'updated') {
+				if (changes.paused.data)
 					socketResume()
-				currentState = state
+				else
+					socketPause()
 			}
+			currentState = newState
 
       console.log("Currently Playing", state);
       _this.stateHandler(state);

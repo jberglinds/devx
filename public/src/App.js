@@ -1,5 +1,36 @@
 /* global Demo, React, ReactDOM */
 
+let socket = io().connect()
+socket.on('connect', () => {
+	console.log('Ready')
+})
+
+function connectToStation(id) {
+		socket.emit('join', {
+			radio: id,
+		})
+}
+
+function addTrackChangedListener(callback) {
+	socket.on('track-change', (req) => callback(req))
+}
+
+function addPausedListener(callback) {
+	socket.on('pause', (req) => callback(req))
+}
+
+function addResumedListener(callback) {
+	socket.on('resume', (req) => callback(req))
+}
+
+function sendPaused() {
+	socket.emit('pause', {})
+}
+
+function sendResumed() {
+	socket.emit('resume', {})
+}
+
 /**
  * (C) 2017 Spotify AB
  */
@@ -24,22 +55,35 @@ var ConnectPlayer = React.createClass({
   listenForFocusOnWebPlayer() {
     let _this = this;
     let stateHandlerCallback = (state) => {
+			if (state.disallows && state.disallows.pausing) {
+				sendPaused()
+			}
+			if (state.disallows && state.disallows.resuming) {
+				sendResumed()
+			}
       console.log("Currently Playing", state.track_window.current_track);
       _this.stateHandler(state);
     };
 
     // Call once when connected
     Demo.WebPlaybackSDK.getCurrentState().then(stateHandlerCallback);
+		connectToStation('testing');
+		addPausedListener((req) => {
+			Demo.WebPlaybackSDK.pause();
+		})
+		addResumedListener((req) => {
+			Demo.WebPlaybackSDK.resume();
+		})
 
     // When a change is made
     Demo.WebPlaybackSDK.on("player_state_changed", stateHandlerCallback);
 
     // Poll status every 0.1 seconds
     // This is just to improve the UI for the progress bar
-    setInterval(() => {
-      Demo.WebPlaybackSDK.getCurrentState().then(stateHandlerCallback);
-
-    }, 100);
+    // setInterval(() => {
+    //   Demo.WebPlaybackSDK.getCurrentState().then(stateHandlerCallback);
+    //
+    // }, 100);
   },
   waitingToStart() {
     let player_name = Demo.WebPlaybackSDK._options.name;

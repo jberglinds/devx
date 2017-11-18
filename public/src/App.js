@@ -81,9 +81,9 @@ var ConnectPlayer = React.createClass({
     let _this = this;
     let stateHandlerCallback = (state) => {
 			let newTrack = state.track_window.current_track.uri
-			if (newTrack != current_track) {
+			if (newTrack != currentTrackURI) {
 				socketNewTrack(newTrack)
-				current_track = newTrack
+				currentTrackURI = newTrack
 			}
 			if (state.paused)
 				socketPause()

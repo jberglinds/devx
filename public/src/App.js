@@ -29,6 +29,7 @@ function sendPaused() {
 	if (recentUpdate) {
 		socket.emit('pause', {})
 		console.log('Sending pause on socket')
+		recentUpdate = true
 		window.setTimeout(() => {
 			recentUpdate = false
 		}, 500)
@@ -39,6 +40,7 @@ function sendResumed() {
 	if (recentUpdate) {
 		socket.emit('resume', {})
 		console.log('Sending resume on socket')
+		recentUpdate = true
 		window.setTimeout(() => {
 			recentUpdate = false
 		}, 500)

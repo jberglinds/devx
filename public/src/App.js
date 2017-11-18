@@ -402,16 +402,18 @@ var PlayerControls = React.createClass({
             <li><a onClick={this.previousTrack} className="fa fa-fast-backward"></a></li>
             <li><a onClick={this.startFromBeginning} className="fa fa-repeat "></a></li>
           {this.renderPlayOrPause()}
-            <li><a onClick={this.skip15Seconds} className="fa fa-chevron-circle-right "></a></li>
+            <li><a onClick={this.skip15Seconds} className="fa fa-chevron-circle-right"></a></li>
             <li><a onClick={this.nextTrack} className="fa fa-fast-forward"></a></li>
             <li><a onClick={this.mute} className="fa fa-volume-off"></a></li>
-            <li><a onClick={this.setVolumeToMax} className="fa fa-volume-up "></a></li>
+            <li><a onClick={this.setVolumeToMax} className="fa fa-volume-up"></a></li>
           </ul>
       );
     }
     return (
       <ul className="player player-controls">
         <li><a onClick={this.mute} className="fa fa-volume-off"></a></li>
+				<li><a className="fa fa-thumbs-o-up fa-5x"></a></li>
+				<li><a className="fa fa-thumbs-o-down fa-5x"></a></li>
       </ul>
     );
   }

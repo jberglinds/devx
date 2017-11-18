@@ -1,5 +1,7 @@
 /* global Demo, React, ReactDOM */
 
+let recentUpdate = false
+
 let socket = io('10.48.12.61:8080').connect()
 socket.on('connect', () => {
 	console.log('Ready')
@@ -24,12 +26,29 @@ function addResumedListener(callback) {
 }
 
 function sendPaused() {
-	socket.emit('pause', {})
+	if (recentUpdate) {
+		socket.emit('pause', {})
+		console.log('Sending pause on socket')
+		window.setTimeout(() => {
+			recentUpdate = false
+		}, 500)
+	}
 }
 
 function sendResumed() {
-	socket.emit('resume', {})
+	if (recentUpdate) {
+		socket.emit('resume', {})
+		console.log('Sending resume on socket')
+		window.setTimeout(() => {
+			recentUpdate = false
+		}, 500)
+	}
 }
+
+function sendNewTrack(uri) {
+	socket.emit('track-change', uri)
+}
+
 
 /**
  * (C) 2017 Spotify AB
@@ -55,13 +74,12 @@ var ConnectPlayer = React.createClass({
   listenForFocusOnWebPlayer() {
     let _this = this;
     let stateHandlerCallback = (state) => {
-			if (state.disallows && state.disallows.pausing) {
+			if (state.paused)
 				sendPaused()
-			}
-			if (state.disallows && state.disallows.resuming) {
+			else
 				sendResumed()
-			}
-      console.log("Currently Playing", state.track_window.current_track);
+
+      console.log("Currently Playing", state);
       _this.stateHandler(state);
     };
 

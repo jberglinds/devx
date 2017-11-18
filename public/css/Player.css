@@ -1,0 +1,267 @@
+/**
+ * (C) 2017 Spotify AB
+ */
+
+body {
+  background-color: #282828;
+  color: white;
+}
+
+.container-player {
+  width: 90%;
+}
+
+.spotify-green {
+  color: #1db954;
+}
+
+.visually-hidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+/* Icons */
+
+.icon.devices-list-icon {
+  background: url("https://cdn.glitch.com/663488ce-986d-4655-8058-f8f7785f3bc6%2FScreen%20Shot%202017-11-13%20at%2017.32.31.png?1510590767561") no-repeat center center;
+  background-size: 100% auto;
+  display: inline-block;
+  height: 36px;
+  width: 36px;
+}
+
+.icon.grid-loading-icon {
+  background: url("https://cdn.glitch.com/663488ce-986d-4655-8058-f8f7785f3bc6%2Fgrid.svg?1510591160050") no-repeat center center;
+  background-size: auto 100px;
+  display: block;
+  min-height: 100px;
+  width: 100%;
+}
+
+/* Header */
+
+header {
+  height: 150px;
+  text-align: center;
+  width: 100%;
+}
+
+header a {
+  background: url("https://cdn.glitch.com/663488ce-986d-4655-8058-f8f7785f3bc6%2Fs4d-white.svg?1510524595462") no-repeat center center;
+  background-size: 300px;
+  display: inline-block;
+  min-height: 150px;
+  min-width: 300px;
+}
+
+/* Footer */
+
+footer {
+  padding: 50px 0 0;
+  text-align: center;
+}
+
+footer > p {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+footer > p > a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+/* Core */
+
+.screen {
+  text-align: center;
+}
+
+/* Connect Player */
+
+.screen.screen-connect-player > h1 {
+  text-align: center;
+}
+
+.screen.screen-connect-player .icon.grid-loading-icon {
+  background-size: auto 50px;
+  min-height: 50px;
+}
+
+/* Player */
+
+.screen.screen-player-album-art {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: -1;
+
+  display: block;
+  width: 100%;
+  height: 100%;
+
+  opacity: 0.75;
+  animation: album-art-enlarger 100s infinite;
+
+  -webkit-filter: blur(60px);
+  -moz-filter: blur(60spx);
+  -o-filter: blur(60spx);
+  -ms-filter: blur(60spx);
+  filter: blur(60spx);
+}
+
+.screen.screen-player {
+  clear: both;
+  float: none;
+}
+
+.screen.screen-player,
+.screen.screen-player a {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.screen.screen-player .player.player-progress,
+.screen.screen-player .player.player-progress span {
+  display: block;
+  height: 5px;
+  width: 100%;
+}
+
+.screen.screen-player .player.player-progress {
+  background: rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.screen.screen-player .player.player-progress span.position,
+.screen.screen-player .player.player-progress span.duration {
+  color: rgba(255, 255, 255, 0.5);
+  display: block;
+  font-size: 14px;
+  position: absolute;
+  top: -22px;
+  left: 0;
+}
+
+.screen.screen-player .player.player-progress span.position {
+  text-align: left;
+}
+
+.screen.screen-player .player.player-progress span.duration {
+  text-align: right;
+}
+
+.screen.screen-player .player.player-progress span.progress-bar {
+  background: rgba(255, 255, 255, 0.5);
+  top: 0;
+  left: 0;
+}
+
+.screen.screen-player .player.player-album-art {
+  opacity: 0.75;
+  text-align: right;
+}
+
+.screen.screen-player .player.player-album-art img {
+  display: inline-block;
+  width: 100%;
+}
+
+.screen.screen-player .player.player-track {
+  font-size: 600%;
+  letter-spacing: -5px;
+}
+
+.screen.screen-player .player.player-album {
+  font-size: 600%;
+  letter-spacing: -5px;
+}
+
+.screen.screen-player .player.player-artists {
+  display: block;
+  letter-spacing: -1px;
+}
+
+.screen.screen-player .player.player-artists li {
+  display: inline;
+  font-size: 200%;
+}
+
+.screen.screen-player .player.player-artists li:first-child {
+  display: block;
+  font-size: 300%;
+  letter-spacing: -2px;
+}
+
+.screen.screen-player .player.player-artists li:nth-child(2):before {
+  content: " featuring ";
+  display: inline;
+  color: rgba(255, 255, 255, 0.15);
+}
+
+.screen.screen-player .player.player-artists li:nth-child(n+3):not(:last-child):before {
+  content: ", ";
+  display: inline;
+  color: rgba(255, 255, 255, 0.15);
+}
+
+.screen.screen-player .player.player-artists li:not(:first-child):not(:nth-child(2)):last-child:before {
+  content: " and ";
+  display: inline;
+  color: rgba(255, 255, 255, 0.15);
+}
+
+.screen.screen-player .player.player-controls {
+  display: block;
+  margin-top: 80px;
+}
+
+.screen.screen-player .player.player-controls > li {
+  display: inline-block;
+}
+
+.screen.screen-player .player.player-controls > li:not(:first-child) {
+  margin-left: 10px;
+}
+
+.screen.screen-player .player.player-controls > li > a {
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  border-radius: 50%;
+  color: rgba(255, 255, 255, 0.75);
+  display: inline-block;
+  font-size: 25px;
+  padding: 30px 0;
+  text-align: center;
+  width: 90px;
+}
+
+/* CSS Hotfixes */
+
+.alert > h3 {
+  margin-top: 0;
+}
+
+.screen.screen-player .player.player-controls > li > a:not(.fa) {
+  font-size: 16px;
+}
+
+/* Animations */
+
+@keyframes album-art-enlarger {
+  0%, 100% {
+    background-size: 300% auto;
+    -webkit-background-size: 300%;
+  }
+  50% {
+    background-size: 100% auto;
+    -webkit-background-size: 100%;
+  }
+}

@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The amazing player</title>
+
+  <link rel="stylesheet" href="/css/reset.min.css" />
+  <link rel="stylesheet" href="https://sp-bootstrap.global.ssl.fastly.net/8.0.0/sp-bootstrap.min.css" />
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" />
+  <link rel="stylesheet" href="/css/Player.css" />
+</head>
+<body>
+
+  <header>
+    <h1>The amazing player</h1>
+  </header>
+
+  <main id="screen" class="container-fluid container-player">
+    <div class="screen screen-loading">
+      <div class="icon grid-loading-icon">
+        <span class="visually-hidden">Loading</span>
+      </div>
+      <span class="visually-hidden">Loading Player</span>
+    </div>
+  </main>
+
+  <!-- React -->
+  <script src="https://fb.me/react-15.0.0.js"></script>
+  <script src="https://fb.me/react-dom-15.0.0.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
+
+  <!-- TASK: Include the Spotify Web Playback SDK -->
+  <script src="https://sdk.scdn.co/spotify-player.js"></script>
+
+  <!-- Our Demo -->
+  <script src="src/Demo.Initialization.js"></script>
+  <script src="src/Demo.WebPlaybackSDK.js"></script>
+  <script src="src/Demo.Auth.js"></script>
+  <script src="src/App.js" type="text/babel"></script>
+</body>
+</html>

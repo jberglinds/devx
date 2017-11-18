@@ -8,5 +8,8 @@
     "dotenv": "^4.0.0",
     "express": "^4.16.2",
     "socket.io": "^2.0.4"
+  },
+  "scripts": {
+    "start": "node app/index.js"
   }
 }

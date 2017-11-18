@@ -394,13 +394,12 @@ var PlayerControls = React.createClass({
   render () {
     let track_id = this.props.state.track_window.current_track.id;
     let track_url = "https://open.spotify.com/track/" + track_id;
-		Demo.is_host = false;
+		Demo.is_host = true;
     // Checks whether the user is a host or listerner and returns the button configuration
     if (Demo.is_host) {
       return (
           <ul className="player player-controls">
             <li><a onClick={this.previousTrack} className="fa fa-fast-backward"></a></li>
-            <li><a onClick={this.mute} className="fa fa-chevron-circle-left "></a></li>
             <li><a onClick={this.startFromBeginning} className="fa fa-repeat "></a></li>
           {this.renderPlayOrPause()}
             <li><a onClick={this.skip15Seconds} className="fa fa-chevron-circle-right "></a></li>
@@ -412,7 +411,7 @@ var PlayerControls = React.createClass({
     }
     return (
       <ul className="player player-controls">
-        <li><a onClick={this.mute} className="fa fa-chevron-circle-left "></a></li>
+        <li><a onClick={this.mute} className="fa fa-volume-off"></a></li>
       </ul>
     );
   }

@@ -1,0 +1,25 @@
+.btn {
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 38px;
+  background: #23a6ad;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+  outline: none;
+}
+.btn:hover {
+  background: #26e0d0;
+  text-decoration: none;
+}
+
+.wrapper {
+    text-align: center;
+}
+
+.button {
+    position: absolute;
+    top: 50%;
+}

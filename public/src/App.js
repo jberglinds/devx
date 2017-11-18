@@ -1,6 +1,6 @@
 /* global Demo, React, ReactDOM */
 
-let socket = io('10.48.12.61:8080').connect()
+let socket = io('10.48.12.118:8080').connect()
 socket.on('connect', () => {
 	console.log('Ready')
 })
@@ -394,7 +394,7 @@ var PlayerControls = React.createClass({
   render () {
     let track_id = this.props.state.track_window.current_track.id;
     let track_url = "https://open.spotify.com/track/" + track_id;
-
+		Demo.is_host = false;
     // Checks whether the user is a host or listerner and returns the button configuration
     if (Demo.is_host) {
       return (

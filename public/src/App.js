@@ -1,6 +1,6 @@
 /* global Demo, React, ReactDOM */
 
-let socket = io().connect()
+let socket = io().connect('10.48.12.61')
 socket.on('connect', () => {
 	console.log('Ready')
 })

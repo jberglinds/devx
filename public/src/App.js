@@ -257,7 +257,9 @@ var Player = React.createClass({
     let track = this.current_track();
     let image = track.album.images[2];
 
-    return (
+		Demo.is_host = true;
+		if (!Demo.is_host) {
+			return (
 
       <div className="screen screen-player">
 			<table>
@@ -324,7 +326,31 @@ var Player = React.createClass({
 
     );
   }
+
+return (
+
+<div className="screen screen-player">
+	<div className="player">
+		<div className="row">
+			<div className="col-sm-3">
+				<PlayerAlbumArt image_url={image.url} />
+			</div>
+			<div className="col-sm-9">
+
+				<PlayerTrack track={track} />
+				<PlayerArtists artists={track.artists} />
+				<PlayerControls state={this.props.state} />
+			</div>
+		</div>
+	</div>
+	<PlayerBackgroundAlbumArt image_url={image.url} />
+</div>
+
+);
+}
 });
+
+
 
 var PlayerProgress = React.createClass({
   parseTime (seconds) {
@@ -441,7 +467,7 @@ var PlayerControls = React.createClass({
   render () {
     let track_id = this.props.state.track_window.current_track.id;
     let track_url = "https://open.spotify.com/track/" + track_id;
-		Demo.is_host = false;
+		Demo.is_host = true;
     // Checks whether the user is a host or listerner and returns the button configuration
     if (Demo.is_host) {
       return (

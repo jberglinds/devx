@@ -257,7 +257,7 @@ var Player = React.createClass({
     let track = this.current_track();
     let image = track.album.images[2];
 
-		Demo.is_host = true;
+		Demo.is_host = false;
 		if (!Demo.is_host) {
 			return (
 
@@ -265,42 +265,124 @@ var Player = React.createClass({
 			<table>
 <tbody>
 		    <tr >
-		      <td width="15%" align="left">
+		      <td width="18%" align="left">
 		            <div>
 
-								<table>
 
-								<tr height="40">
-
-								<td>
-								  <p className="spotify-green"> Online Music Stations</p>
+								<table width="100%" align="left">
+									<tbody>
+								<tr height="40" align="left">
+								<td align="left" >
+								  <p className="spotify-green"><b>Favourite Music Stations</b></p>
 								</td>
 								</tr>
 
 								<tr height="40">
-
 								<td>
 								<a href=" " ><b>DJ Rubita !</b></a>
 								</td>
 								</tr>
 
 								<tr height="40">
+
 								<td >
 									<a href=" "><b>WOW DJ Music !</b></a>
 								</td>
 
 								</tr>
 
-								<tr height="40">
-								<td>
-									<a href=" "><b>Nice Music Here!!!</b></a>
-								</td>
 
-								</tr>
+								</tbody>
 								</table>
+
+
 		            </div>
+
+								<div>
+
+
+							 <table width="100%" align="left">
+								 <tbody>
+							 <tr height="40" align="left">
+							 <td align="left" >
+								 <p className="spotify-green"><b>Online Music Stations </b></p>
+							 </td>
+							 </tr>
+							 <tr height="40">
+
+							 <td>
+								 <a href=" "><b>Nice Music Here!!!</b></a>
+							 </td>
+
+							 </tr>
+							 <tr height="40">
+							 <td>
+							 <a href=" " ><b>DJ DJ DJ !</b></a>
+							 </td>
+							 </tr>
+
+							 <tr height="40">
+
+							 <td >
+								 <a href=" "><b>Crazy FM :D !</b></a>
+							 </td>
+
+							 </tr>
+
+							 <tr height="40">
+
+							 <td>
+								 <a href=" "><b>Melody FM</b></a>
+							 </td>
+
+							 </tr>
+							 </tbody>
+							 </table>
+
+
+							 </div>
+
+							 <div>
+
+
+						  <table width="100%" align="left">
+						 	 <tbody>
+						  <tr height="40" align="left">
+						  <td align="left" >
+						 	 <p className="spotify-green"><b>Popular Music Stations </b></p>
+						  </td>
+						  </tr>
+
+						  <tr height="40">
+						  <td>
+						  <a href=" " ><b>DJ Dimitris !</b></a>
+						  </td>
+						  </tr>
+
+						  <tr height="40">
+
+						  <td >
+						 	 <a href=" "><b>~~Anton Music~~</b></a>
+						  </td>
+
+						  </tr>
+
+						  <tr height="40">
+
+						  <td>
+						 	 <a href=" "><b>Jazz Music</b></a>
+						  </td>
+
+						  </tr>
+						  </tbody>
+						  </table>
+
+
+						  </div>
+
+
 		          </td>
-		        <td width="85%">
+		        <td width="82%">
         <div className="player">
           <div className="row">
             <div className="col-sm-3">
@@ -344,6 +426,7 @@ return (
 		</div>
 	</div>
 	<PlayerBackgroundAlbumArt image_url={image.url} />
+
 </div>
 
 );
@@ -467,7 +550,7 @@ var PlayerControls = React.createClass({
   render () {
     let track_id = this.props.state.track_window.current_track.id;
     let track_url = "https://open.spotify.com/track/" + track_id;
-		Demo.is_host = true;
+		Demo.is_host = false;
     // Checks whether the user is a host or listerner and returns the button configuration
     if (Demo.is_host) {
       return (

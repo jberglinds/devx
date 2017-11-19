@@ -459,6 +459,7 @@ var PlayerControls = React.createClass({
     return (
       <ul className="player player-controls">
         <li><a onClick={this.mute} className="fa fa-volume-off"></a></li>
+				<li><a onClick={this.setVolumeToMax} className="fa fa-volume-up"></a></li>
 				<li><a className="fa fa-thumbs-o-up fa-5x"></a></li>
 				<li><a className="fa fa-thumbs-o-down fa-5x"></a></li>
       </ul>
